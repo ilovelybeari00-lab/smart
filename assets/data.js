@@ -74,6 +74,20 @@ const PROJECTS = [
       { caption: "주차장 입구 소나무 전정", before: "images/illua-6-before.jpg", after: "images/illua-6-after.jpg" },
     ],
   },
+  {
+    title: "학교 교정 조경작업",
+    client: "",
+    location: "",
+    work: "교정 수목 전정 · 수형 다듬기",
+    desc:
+      "학교 진입로와 건물 앞 화단, 교정 정원의 소나무, 향나무, 관목을 다듬었습니다. 웃자란 가지를 정리해 나무마다 단정한 수형을 살렸습니다.",
+    pairs: [
+      { caption: "학교 진입로 소나무·관목 정리", before: "images/school2-1-before.jpg", after: "images/school2-1-after.jpg" },
+      { caption: "건물 앞 향나무 화단 전정", before: "images/school2-2-before.jpg", after: "images/school2-2-after.jpg" },
+      { caption: "교정 정원 향나무 수형 다듬기", before: "images/school2-3-before.jpg", after: "images/school2-3-after.jpg" },
+      { caption: "건물 옆 화단 관목 전정", before: "images/school2-4-before.jpg", after: "images/school2-4-after.jpg" },
+    ],
+  },
 ];
 
 const PROCESS = [
