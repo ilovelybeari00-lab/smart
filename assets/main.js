@@ -62,6 +62,24 @@
             )
             .join("")}
         </div>
+        ${
+          p.progress && p.progress.length
+            ? `<h4 class="progress-title">작업 과정</h4>
+        <div class="progress">
+          ${p.progress
+            .map(
+              (x) => `
+            <figure>
+              <button type="button" class="shot" data-full="${esc(x.src)}" data-label="${esc(x.caption)}">
+                <img src="${esc(x.src)}" alt="${esc(x.caption)}" loading="lazy" />
+              </button>
+              <figcaption>${esc(x.caption)}</figcaption>
+            </figure>`
+            )
+            .join("")}
+        </div>`
+            : ""
+        }
       </article>`;
   }).join("");
 

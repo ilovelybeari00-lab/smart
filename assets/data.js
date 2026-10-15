@@ -25,7 +25,7 @@ const SERVICES = [
   { icon: "🌲", title: "수목 전정·수형 관리", desc: "소나무, 향나무 등 조경수의 수형을 살려 단정하고 품격 있게 다듬습니다." },
   { icon: "🌿", title: "관목·생울타리 정리", desc: "웃자란 관목과 생울타리를 정리해 건물 입구와 간판이 잘 보이게 합니다." },
   { icon: "🌸", title: "화단 조성·정비", desc: "빈 공터에 새 화단을 만들고, 기존 화단의 잡초와 고사목을 정리합니다." },
-  { icon: "🚛", title: "고소작업 장비 보유", desc: "높은 수목도 고소작업차로 안전하게 작업합니다." },
+  { icon: "🚜", title: "장비 작업", desc: "굴착기, 고소작업차, 집게차로 큰 나무 제거와 폐목 처리까지 한 번에 합니다." },
 ];
 
 // 시공 사례. pairs 에 시공 전·후 사진을 짝지어 넣습니다.
@@ -40,6 +40,31 @@ const PROJECTS = [
     pairs: [
       { caption: "도로변 빈 공터 → 화단 조성", before: "images/minrak-1-before.jpg", after: "images/minrak-1-after.jpg" },
       { caption: "건물 앞 빈 화단 → 관목 식재", before: "images/minrak-2-before.jpg", after: "images/minrak-2-after.jpg" },
+    ],
+  },
+  {
+    title: "학교 운동장 주변 녹지 정비",
+    client: "",
+    location: "",
+    work: "대나무·잡목 제거 · 수목 식재 · 화단 정비 · 폐목 처리",
+    desc:
+      "운동장 둘레를 뒤덮은 대나무숲과 잡목을 굴착기로 걷어내고, 그 자리에 나무를 새로 심어 지주목을 세웠습니다. 화단도 정리하고, 나온 폐목은 집게차로 실어 깨끗하게 처리했습니다.",
+    pairs: [
+      { caption: "운동장 옆 녹지 정비 · 수목 식재", before: "images/grounds-1-before.jpg", after: "images/grounds-1-after.jpg" },
+      { caption: "건물 옆 잡초밭 → 수목 식재", before: "images/grounds-2-before.jpg", after: "images/grounds-2-after.jpg" },
+      { caption: "대나무숲 제거 · 산책길 확보", before: "images/grounds-3-before.jpg", after: "images/grounds-3-after.jpg" },
+      { caption: "방음벽 앞 대나무 경사지 정리", before: "images/grounds-4-before.jpg", after: "images/grounds-4-after.jpg" },
+      { caption: "트랙 옆 잡목 제거", before: "images/grounds-5-before.jpg", after: "images/grounds-5-after.jpg" },
+      { caption: "건물 앞 화단 정리", before: "images/grounds-6-before.jpg", after: "images/grounds-6-after.jpg" },
+      { caption: "담장 화단 수목 식재", before: "images/grounds-7-before.jpg", after: "images/grounds-7-after.jpg" },
+    ],
+    progress: [
+      { caption: "굴착기로 잡목 걷어내기", src: "images/grounds-work-1.jpg" },
+      { caption: "대나무 벌채", src: "images/grounds-work-2.jpg" },
+      { caption: "대나무 뿌리 제거", src: "images/grounds-work-3.jpg" },
+      { caption: "수목 굴취", src: "images/grounds-work-4.jpg" },
+      { caption: "수목 운반", src: "images/grounds-work-5.jpg" },
+      { caption: "집게차로 폐목 처리", src: "images/grounds-work-6.jpg" },
     ],
   },
   {
