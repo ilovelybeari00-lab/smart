@@ -16,8 +16,8 @@
   if ($("float-call")) $("float-call").href = tel;
 
   // ---------- 공통: 시공 사례 그리기 ----------
-  function pairsHTML(p) {
-    return p.pairs
+  function pairsHTML(p, limit) {
+    return (limit ? p.pairs.slice(0, limit) : p.pairs)
       .map(
         (x, i) => `
       <figure class="pair">
@@ -56,9 +56,23 @@
       </div>`;
   }
 
-  function caseHTML(p, headingTag) {
-    const meta = [p.client, p.location, p.work].filter(Boolean);
+  function videoHTML(p) {
+    if (!p.video || !p.video.src) return "";
+    return `
+      <h4 class="progress-title">작업 영상</h4>
+      <figure class="video">
+        <video src="${esc(p.video.src)}" poster="${esc(p.video.poster || "")}" controls muted playsinline preload="metadata"></video>
+        ${p.video.caption ? `<figcaption>${esc(p.video.caption)}</figcaption>` : ""}
+      </figure>`;
+  }
+
+  function caseHTML(p, headingTag, limit) {
+    const meta = [p.client, p.year, p.location, p.work].filter(Boolean);
     const h = headingTag || "h3";
+    const more =
+      limit && p.pairs.length > limit
+        ? `<p class="more-pairs"><a href="${caseUrl(p)}" class="btn btn-outline">이 현장 작업 전·후 ${p.pairs.length}쌍 모두 보기 →</a></p>`
+        : "";
     return `
       <article class="case">
         <div class="case-head">
@@ -66,22 +80,28 @@
           <ul class="case-meta">${meta.map((m) => `<li>${esc(m)}</li>`).join("")}</ul>
           <p>${esc(p.desc)}</p>
         </div>
-        <div class="pairs">${pairsHTML(p)}</div>
-        ${progressHTML(p)}
+        <div class="pairs">${pairsHTML(p, limit)}</div>
+        ${more}
+        ${limit ? "" : videoHTML(p) + progressHTML(p)}
       </article>`;
   }
 
   function cardHTML(p) {
     const cover = p.cover || p.pairs[0].after;
-    const count =
-      `작업 전·후 ${p.pairs.length}쌍` + (p.progress && p.progress.length ? ` · 작업 과정 ${p.progress.length}장` : "");
+    const count = [
+      p.pairs.length ? `작업 전·후 ${p.pairs.length}쌍` : "",
+      p.progress && p.progress.length ? `사진 ${p.progress.length}장` : "",
+      p.video ? "영상" : "",
+    ].filter(Boolean).join(" · ");
     return `
-      <a class="case-card" href="${caseUrl(p)}">
+      <a class="case-card" href="${caseUrl(p)}" data-category="${esc(p.category || "")}">
         <div class="case-card-img">
           <img src="${esc(cover)}" alt="${esc(p.title)}" loading="lazy" />
-          <span class="tag after">작업 후</span>
+          <span class="tag after">${p.pairs.length ? "작업 후" : "완성"}</span>
+          ${p.year ? `<span class="year">${esc(p.year)}</span>` : ""}
         </div>
         <div class="case-card-body">
+          ${p.category ? `<p class="case-card-cat">${esc(p.category)}</p>` : ""}
           <h3>${esc(p.title)}</h3>
           <p class="case-card-work">${esc(p.work)}</p>
           <p class="case-card-count">${esc(count)}</p>
@@ -95,7 +115,7 @@
     document.title = `${COMPANY.name} | ${COMPANY.slogan}`;
     $("licenses").innerHTML = COMPANY.licenses.map((l) => `<li>✔ ${esc(l)}</li>`).join("");
 
-    $("featured").innerHTML = caseHTML(PROJECTS[0]);
+    $("featured").innerHTML = caseHTML(PROJECTS[0], "h3", 4);
     $("all-cases-link").textContent = `시공사례 전체 보기 (${PROJECTS.length}곳) →`;
 
     if (STATS.length) {
@@ -103,6 +123,11 @@
         (s) => `<div class="stat"><strong>${esc(s.value)}</strong><span>${esc(s.label)}</span></div>`
       ).join("");
     } else hide("stats-section");
+
+    if ($("clients")) {
+      const clients = [...new Set(PROJECTS.map((p) => p.client).filter(Boolean))];
+      $("clients").innerHTML = clients.map((c) => `<li>${esc(c)}</li>`).join("");
+    }
 
     $("services-list").innerHTML = SERVICES.map(
       (s) => `<div class="card"><div class="icon">${s.icon}</div><h3>${esc(s.title)}</h3><p>${esc(s.desc)}</p></div>`
@@ -151,6 +176,30 @@
     document.title = `시공사례 | ${COMPANY.name}`;
     $("case-count").textContent = `직접 작업한 현장 ${PROJECTS.length}곳입니다. 현장을 누르면 작업 전·후 사진을 볼 수 있습니다.`;
     $("case-list").innerHTML = PROJECTS.map(cardHTML).join("");
+
+    const cats = [...new Set(PROJECTS.map((p) => p.category).filter(Boolean))];
+    const filt = $("case-filter");
+    if (filt && cats.length > 1) {
+      filt.innerHTML = ["전체", ...cats]
+        .map((c, i) => `<button type="button" class="chip${i === 0 ? " on" : ""}" data-cat="${esc(c)}">${esc(c)}</button>`)
+        .join("");
+      filt.addEventListener("click", (e) => {
+        const b = e.target.closest(".chip");
+        if (!b) return;
+        filt.querySelectorAll(".chip").forEach((x) => x.classList.toggle("on", x === b));
+        const cat = b.dataset.cat;
+        let shown = 0;
+        $("case-list").querySelectorAll(".case-card").forEach((card) => {
+          const on = cat === "전체" || card.dataset.category === cat;
+          card.hidden = !on;
+          if (on) shown++;
+        });
+        $("case-count").textContent =
+          cat === "전체"
+            ? `직접 작업한 현장 ${PROJECTS.length}곳입니다. 현장을 누르면 작업 전·후 사진을 볼 수 있습니다.`
+            : `${cat} 현장 ${shown}곳입니다.`;
+      });
+    }
   }
 
   // ---------- 현장별 상세 ----------
