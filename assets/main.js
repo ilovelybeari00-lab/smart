@@ -56,12 +56,13 @@
       </div>`;
   }
 
-  function videoHTML(p) {
+  function videoHTML(p, auto) {
     if (!p.video || !p.video.src) return "";
+    const attrs = auto ? "autoplay muted loop playsinline preload=\"auto\"" : "controls muted playsinline preload=\"metadata\"";
     return `
-      <h4 class="progress-title">작업 영상</h4>
-      <figure class="video">
-        <video src="${esc(p.video.src)}" poster="${esc(p.video.poster || "")}" controls muted playsinline preload="metadata"></video>
+      ${auto ? "" : '<h4 class="progress-title">작업 영상</h4>'}
+      <figure class="video${auto ? " video-auto" : ""}">
+        <video src="${esc(p.video.src)}" poster="${esc(p.video.poster || "")}" ${attrs}></video>
         ${p.video.caption ? `<figcaption>${esc(p.video.caption)}</figcaption>` : ""}
       </figure>`;
   }
@@ -80,9 +81,10 @@
           <ul class="case-meta">${meta.map((m) => `<li>${esc(m)}</li>`).join("")}</ul>
           <p>${esc(p.desc)}</p>
         </div>
+        ${limit ? videoHTML(p, true) : ""}
         <div class="pairs">${pairsHTML(p, limit)}</div>
         ${more}
-        ${limit ? "" : videoHTML(p) + progressHTML(p)}
+        ${limit ? (p.pairs.length ? "" : progressHTML(p)) : videoHTML(p) + progressHTML(p)}
       </article>`;
   }
 

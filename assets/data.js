@@ -41,6 +41,23 @@ const SERVICES = [
 // pairs 에 시공 전·후 사진을 짝지어 넣습니다.
 const PROJECTS = [
   {
+    id: "pond-garden",
+    title: "주택 정원 연못·분수 조성",
+    cover: "images/pond-1.jpg",
+    client: "개인 주택",
+    category: "주택·빌라",
+    work: "자연석 연못 조성 · 분수 설치 · 수생식물·초화류 식재",
+    desc:
+      "잔디 마당 한쪽에 자연석을 둘러 연못을 만들고 분수를 설치했습니다. 연못 둘레에는 수생식물과 꽃을 심고 석등과 조명을 놓아 저녁에도 보기 좋은 정원이 되도록 했습니다.",
+    video: { src: "video/pond-2014.mp4", poster: "images/pond-1.jpg", caption: "연못 조성 마무리 작업 영상" },
+    pairs: [],
+    progress: [
+      { caption: "자연석 연못과 분수", src: "images/pond-1.jpg" },
+      { caption: "연못 둘레 수생식물 식재", src: "images/pond-2.jpg" },
+      { caption: "마당 쪽에서 본 연못 정원", src: "images/pond-3.jpg" },
+    ],
+  },
+  {
     id: "busan-science-2021",
     title: "국립부산과학관 전체 수목 전정",
     cover: "images/sci2021-3-after.jpg",
@@ -255,23 +272,6 @@ const PROJECTS = [
       { caption: "건물 앞 향나무 화단 전정", before: "images/school2-2-before.jpg", after: "images/school2-2-after.jpg" },
       { caption: "교정 정원 향나무 수형 다듬기", before: "images/school2-3-before.jpg", after: "images/school2-3-after.jpg" },
       { caption: "건물 옆 화단 관목 전정", before: "images/school2-4-before.jpg", after: "images/school2-4-after.jpg" },
-    ],
-  },
-  {
-    id: "pond-garden",
-    title: "주택 정원 연못·분수 조성",
-    cover: "images/pond-1.jpg",
-    client: "개인 주택",
-    category: "주택·빌라",
-    work: "자연석 연못 조성 · 분수 설치 · 수생식물·초화류 식재",
-    desc:
-      "잔디 마당 한쪽에 자연석을 둘러 연못을 만들고 분수를 설치했습니다. 연못 둘레에는 수생식물과 꽃을 심고 석등과 조명을 놓아 저녁에도 보기 좋은 정원이 되도록 했습니다.",
-    video: { src: "video/pond-2014.mp4", poster: "images/pond-1.jpg", caption: "연못 조성 마무리 작업 영상 (20초)" },
-    pairs: [],
-    progress: [
-      { caption: "자연석 연못과 분수", src: "images/pond-1.jpg" },
-      { caption: "연못 둘레 수생식물 식재", src: "images/pond-2.jpg" },
-      { caption: "마당 쪽에서 본 연못 정원", src: "images/pond-3.jpg" },
     ],
   },
 ];
