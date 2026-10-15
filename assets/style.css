@@ -91,6 +91,30 @@ h1, h2, h3 { line-height: 1.3; margin: 0 0 .5em; }
 .progress figure { margin: 0; }
 .progress figcaption { margin-top: 6px; font-size: .92rem; color: var(--muted); }
 
+/* 첫 화면 → 전체 보기 버튼 */
+.more-cases { text-align: center; margin-top: 8px; }
+
+/* 시공사례 목록 카드 */
+.page-top { padding-top: 48px; }
+.page-title { font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 900; }
+.back-link { display: inline-block; margin-bottom: 20px; color: var(--green); font-weight: 700; text-decoration: none; }
+.case .case-head h1 { font-size: clamp(1.5rem, 3.5vw, 2rem); font-weight: 900; }
+.case-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.case-card { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; text-decoration: none; color: inherit; transition: transform .2s, box-shadow .2s; }
+.case-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,.08); }
+.case-card-img { position: relative; aspect-ratio: 3 / 2; background: #dde5de; }
+.case-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.case-card-body { padding: 18px 20px 22px; display: flex; flex-direction: column; flex: 1; }
+.case-card h3 { font-size: 1.15rem; margin-bottom: 6px; }
+.case-card-work { margin: 0 0 6px; color: var(--muted); }
+.case-card-count { margin: 0 0 14px; color: var(--green); font-size: .9rem; font-weight: 500; }
+.case-card-more { margin-top: auto; font-weight: 700; color: var(--green); }
+
+/* 상세 페이지 하단 상담 띠 */
+.cta-band { text-align: center; }
+.btn-light { background: #fff; color: var(--green-dark); }
+.btn-light:hover { background: var(--green-soft); }
+
 /* 크게 보기 */
 .lightbox { position: fixed; inset: 0; z-index: 50; background: rgba(0,0,0,.9); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px; cursor: zoom-out; }
 .lightbox[hidden] { display: none; }
@@ -135,7 +159,7 @@ h1, h2, h3 { line-height: 1.3; margin: 0 0 .5em; }
 .float-call { position: fixed; right: 16px; bottom: 16px; background: var(--green); color: #fff; text-decoration: none; padding: 14px 20px; border-radius: 999px; font-weight: 700; box-shadow: 0 8px 20px rgba(0,0,0,.25); z-index: 20; }
 
 @media (max-width: 900px) {
-  .reviews { grid-template-columns: repeat(2, 1fr); }
+  .reviews, .case-cards { grid-template-columns: repeat(2, 1fr); }
   .cards, .process { grid-template-columns: repeat(2, 1fr); }
   .contact-grid { grid-template-columns: 1fr; }
 }
@@ -145,6 +169,7 @@ h1, h2, h3 { line-height: 1.3; margin: 0 0 .5em; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .reviews, .cards, .process { grid-template-columns: 1fr; }
   .progress { grid-template-columns: repeat(2, 1fr); }
+  .case-cards { grid-template-columns: 1fr; }
   .pair-imgs { grid-template-columns: 1fr; gap: 10px; }
   .case-head { padding: 20px; }
   .section { padding: 56px 0; }

@@ -32,7 +32,7 @@
 
 ## 미리 보기
 
-`index.html`을 브라우저로 열면 바로 보입니다.
+`index.html`을 브라우저로 열면 바로 보입니다. 시공사례 목록은 `works.html`, 현장별 상세는 `case.html#현장id` 입니다.
 
 ## 인터넷에 공개하기 (무료, GitHub Pages)
 

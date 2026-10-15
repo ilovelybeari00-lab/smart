@@ -28,9 +28,13 @@ const SERVICES = [
   { icon: "🚜", title: "장비 작업", desc: "굴착기, 고소작업차, 집게차로 큰 나무 제거와 폐목 처리까지 한 번에 합니다." },
 ];
 
-// 시공 사례. pairs 에 시공 전·후 사진을 짝지어 넣습니다.
+// 시공 사례. 맨 위 사례가 첫 화면의 대표 사례로 나옵니다.
+// id 는 상세 페이지 주소에 쓰입니다. (영문 소문자)
+// cover 는 목록 카드 사진입니다. (비우면 첫 번째 작업 후 사진)
+// pairs 에 시공 전·후 사진을 짝지어 넣습니다.
 const PROJECTS = [
   {
+    id: "minrak",
     title: "민락주민자치 화단조성",
     client: "민락 주민자치",
     location: "",
@@ -43,8 +47,9 @@ const PROJECTS = [
     ],
   },
   {
-    title: "학교 운동장 주변 녹지 정비",
-    client: "",
+    id: "gijang",
+    title: "기장중학교 운동장 주변 녹지 정비",
+    client: "기장중학교",
     location: "",
     work: "대나무·잡목 제거 · 수목 식재 · 화단 정비 · 폐목 처리",
     desc:
@@ -68,7 +73,9 @@ const PROJECTS = [
     ],
   },
   {
+    id: "dangpyeong",
     title: "당평 초등학교 조경작업",
+    cover: "images/school-5-after.jpg",
     client: "당평 초등학교",
     location: "",
     work: "교내 수목 전정 · 수형 다듬기",
@@ -84,7 +91,9 @@ const PROJECTS = [
     ],
   },
   {
+    id: "illua",
     title: "ILLUA호텔 조경작업",
+    cover: "images/illua-3-after.jpg",
     client: "호텔 일루아 (HOTEL UNDER THE MOON ILLUA)",
     location: "",           // 예: "부산 해운대구"
     work: "수목 전정 · 관목 정리 · 화단 정비",
@@ -100,6 +109,7 @@ const PROJECTS = [
     ],
   },
   {
+    id: "school",
     title: "학교 교정 조경작업",
     client: "",
     location: "",
