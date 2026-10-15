@@ -20,7 +20,7 @@
 
 - `COMPANY`: 회사명, 전화번호, 이메일, 주소, 카카오톡 상담 주소
 - `STATS`: 실적 숫자
-- `PROJECTS`: 시공 사례 (제목, 분야 `category`, 작업 시기 `year`, 설명, 작업 전·후 사진 `pairs`, 작업 과정 사진 `progress`, 영상 `video`)
+- `PROJECTS`: 시공 사례 (제목, 분야 `category`, 설명, 작업 전·후 사진 `pairs`, 작업 과정 사진 `progress`, 영상 `video`)
 - `BEFORE_AFTER`: 시공 전·후 사진
 - `REVIEWS`: 고객 후기
 

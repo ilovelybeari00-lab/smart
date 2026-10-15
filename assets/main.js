@@ -67,7 +67,7 @@
   }
 
   function caseHTML(p, headingTag, limit) {
-    const meta = [p.client, p.year, p.location, p.work].filter(Boolean);
+    const meta = [p.client, p.location, p.work].filter(Boolean);
     const h = headingTag || "h3";
     const more =
       limit && p.pairs.length > limit
@@ -98,7 +98,6 @@
         <div class="case-card-img">
           <img src="${esc(cover)}" alt="${esc(p.title)}" loading="lazy" />
           <span class="tag after">${p.pairs.length ? "작업 후" : "완성"}</span>
-          ${p.year ? `<span class="year">${esc(p.year)}</span>` : ""}
         </div>
         <div class="case-card-body">
           ${p.category ? `<p class="case-card-cat">${esc(p.category)}</p>` : ""}

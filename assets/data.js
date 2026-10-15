@@ -21,9 +21,9 @@ const COMPANY = {
 // 예: { value: "120+", label: "누적 시공 현장" }
 const STATS = [
   { value: "12곳", label: "공개 시공 사례" },
-  { value: "2014년~", label: "작업 기록" },
   { value: "75쌍", label: "작업 전·후 사진" },
-  { value: "재의뢰", label: "국립부산과학관 2021 → 2025" },
+  { value: "재의뢰", label: "다시 찾아 주신 현장" },
+  { value: "당일", label: "대부분 하루 작업 완료" },
 ];
 
 const SERVICES = [
@@ -35,17 +35,16 @@ const SERVICES = [
 
 // 시공 사례. 맨 위 사례가 첫 화면의 대표 사례로 나옵니다.
 // id 는 상세 페이지 주소에 쓰입니다. (영문 소문자)
-// year 는 작업 시기, category 는 목록 페이지의 분야 필터에 쓰입니다. (학교 / 공공시설 / 호텔·상업시설 / 주택·빌라)
+// category 는 목록 페이지의 분야 필터에 쓰입니다. (학교 / 공공시설 / 호텔·상업시설 / 주택·빌라)
 // video 를 넣으면 상세 페이지에 영상이 나옵니다. (예: { src: "video/xxx.mp4", poster: "images/xxx.jpg", caption: "..." })
 // cover 는 목록 카드 사진입니다. (비우면 첫 번째 작업 후 사진)
 // pairs 에 시공 전·후 사진을 짝지어 넣습니다.
 const PROJECTS = [
   {
     id: "busan-science-2021",
-    title: "국립부산과학관 수목 전정",
+    title: "국립부산과학관 전체 수목 전정",
     cover: "images/sci2021-3-after.jpg",
     client: "국립부산과학관",
-    year: "2021년 2월",
     category: "공공시설",
     work: "입구·정문·천체투영관 일대 수목 전정 · 고사목 제거",
     desc:
@@ -69,14 +68,13 @@ const PROJECTS = [
   },
   {
     id: "busan-science-2025",
-    title: "국립부산과학관 소나무 전정",
+    title: "국립부산과학관 소나무 전정 (재의뢰)",
     cover: "images/sci2025-2-after.jpg",
     client: "국립부산과학관",
-    year: "2025년 5월",
     category: "공공시설",
     work: "입구·천체투영관·캠프관 소나무 전정",
     desc:
-      "2021년에 이어 다시 맡은 현장입니다. 입구 생울타리 위 소나무와 천체투영관 뒤, 캠프관 옆 소나무의 묵은 가지를 솎아 층이 보이는 단정한 수형으로 다듬었습니다. 한 번 맡긴 현장을 다시 찾아 주시는 것이 저희의 자부심입니다.",
+      "다시 맡겨 주신 현장입니다. 입구 생울타리 위 소나무와 천체투영관 뒤, 캠프관 옆 소나무의 묵은 가지를 솎아 층이 보이는 단정한 수형으로 다듬었습니다. 한 번 맡긴 현장을 다시 찾아 주시는 것이 저희의 자부심입니다.",
     pairs: [
       { caption: "입구 생울타리 위 소나무 전정", before: "images/sci2025-1-before.jpg", after: "images/sci2025-1-after.jpg" },
       { caption: "입구 소나무 수형 다듬기", before: "images/sci2025-2-before.jpg", after: "images/sci2025-2-after.jpg" },
@@ -89,7 +87,6 @@ const PROJECTS = [
     title: "부곡여자중학교 교정 수목 정비",
     cover: "images/bugok-5-after.jpg",
     client: "부곡여자중학교",
-    year: "2022년 7월",
     category: "학교",
     work: "느티나무·은행나무 큰 나무 전정 · 화단 정원수 다듬기",
     desc:
@@ -112,7 +109,6 @@ const PROJECTS = [
     title: "㈜웹스 사옥 테라스 정원 관리",
     cover: "images/webs-8-after.jpg",
     client: "㈜웹스",
-    year: "2022년 7월",
     category: "호텔·상업시설",
     work: "9~11층 테라스 소나무·향나무 전정 · 화단 정리",
     desc:
@@ -133,7 +129,6 @@ const PROJECTS = [
     title: "보현빌리지 단지 조경수 전정",
     cover: "images/bohyeon-7-after.jpg",
     client: "보현빌리지",
-    year: "2024년 1월",
     category: "주택·빌라",
     work: "진입로·담장·주차장 입구 소나무 전정 · 생울타리 정리",
     desc:
@@ -151,7 +146,6 @@ const PROJECTS = [
   },
   {
     id: "minrak",
-    year: "2014년 6월",
     category: "공공시설",
     title: "민락주민자치 화단조성",
     client: "민락 주민자치",
@@ -166,7 +160,6 @@ const PROJECTS = [
   },
   {
     id: "gijang",
-    year: "",
     category: "학교",
     title: "기장중학교 운동장 주변 녹지 정비",
     client: "기장중학교",
@@ -197,7 +190,6 @@ const PROJECTS = [
     title: "사직중학교 화단 정원수 전정",
     cover: "images/sajik-2-after.jpg",
     client: "사직중학교",
-    year: "2016년 12월",
     category: "학교",
     work: "화단 정원수 전정 · 둥근 수형 다듬기 · 관목 정리",
     desc:
@@ -213,7 +205,6 @@ const PROJECTS = [
   },
   {
     id: "dangpyeong",
-    year: "",
     category: "학교",
     title: "당평 초등학교 조경작업",
     cover: "images/school-5-after.jpg",
@@ -233,7 +224,6 @@ const PROJECTS = [
   },
   {
     id: "illua",
-    year: "",
     category: "호텔·상업시설",
     title: "ILLUA호텔 조경작업",
     cover: "images/illua-3-after.jpg",
@@ -253,7 +243,6 @@ const PROJECTS = [
   },
   {
     id: "school",
-    year: "",
     category: "학교",
     title: "학교 교정 조경작업",
     client: "",
@@ -273,7 +262,6 @@ const PROJECTS = [
     title: "주택 정원 연못·분수 조성",
     cover: "images/pond-1.jpg",
     client: "개인 주택",
-    year: "2014년 9월",
     category: "주택·빌라",
     work: "자연석 연못 조성 · 분수 설치 · 수생식물·초화류 식재",
     desc:
