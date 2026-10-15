@@ -31,6 +31,18 @@ const SERVICES = [
 // 시공 사례. pairs 에 시공 전·후 사진을 짝지어 넣습니다.
 const PROJECTS = [
   {
+    title: "민락주민자치 화단조성",
+    client: "민락 주민자치",
+    location: "",
+    work: "화단 신규 조성 · 관목 식재",
+    desc:
+      "도로변 빈 공터와 건물 앞 빈 화단에 흙을 채우고 관목을 새로 심어 화단을 만들었습니다. 흙먼지 날리던 자리가 동네의 녹지 공간이 되었습니다.",
+    pairs: [
+      { caption: "도로변 빈 공터 → 화단 조성", before: "images/minrak-1-before.jpg", after: "images/minrak-1-after.jpg" },
+      { caption: "건물 앞 빈 화단 → 관목 식재", before: "images/minrak-2-before.jpg", after: "images/minrak-2-after.jpg" },
+    ],
+  },
+  {
     title: "당평 초등학교 조경작업",
     client: "당평 초등학교",
     location: "",
@@ -60,18 +72,6 @@ const PROJECTS = [
       { caption: "담장 소나무 전정", before: "images/illua-4-before.jpg", after: "images/illua-4-after.jpg" },
       { caption: "호텔 정문 관목 화단 정리", before: "images/illua-5-before.jpg", after: "images/illua-5-after.jpg" },
       { caption: "주차장 입구 소나무 전정", before: "images/illua-6-before.jpg", after: "images/illua-6-after.jpg" },
-    ],
-  },
-  {
-    title: "민락주민자치 화단조성",
-    client: "민락 주민자치",
-    location: "",
-    work: "화단 신규 조성 · 관목 식재",
-    desc:
-      "도로변 빈 공터와 건물 앞 빈 화단에 흙을 채우고 관목을 새로 심어 화단을 만들었습니다. 흙먼지 날리던 자리가 동네의 녹지 공간이 되었습니다.",
-    pairs: [
-      { caption: "도로변 빈 공터 → 화단 조성", before: "images/minrak-1-before.jpg", after: "images/minrak-1-after.jpg" },
-      { caption: "건물 앞 빈 화단 → 관목 식재", before: "images/minrak-2-before.jpg", after: "images/minrak-2-after.jpg" },
     ],
   },
 ];
