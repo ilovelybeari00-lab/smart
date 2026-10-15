@@ -2,15 +2,7 @@
   const $ = (id) => document.getElementById(id);
   const esc = (s) =>
     String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-
-  // 사진이 없을 때 보여줄 임시 배경
-  const PLACEHOLDERS = [
-    "linear-gradient(135deg,#3f7d4e,#9cc89a)",
-    "linear-gradient(135deg,#2f5d50,#7fb3a0)",
-    "linear-gradient(135deg,#5b7d3a,#c4d88b)",
-    "linear-gradient(135deg,#46684a,#a7c4a0)",
-  ];
-  const bg = (img, i) => (img ? `url("${img}") center/cover no-repeat` : PLACEHOLDERS[i % PLACEHOLDERS.length]);
+  const hide = (id) => ($(id).hidden = true);
 
   // 회사 기본 정보
   document.querySelectorAll("[data-bind]").forEach((el) => {
@@ -19,6 +11,8 @@
   document.title = `${COMPANY.name} | ${COMPANY.slogan}`;
   $("year").textContent = new Date().getFullYear();
   $("licenses").innerHTML = COMPANY.licenses.map((l) => `<li>✔ ${esc(l)}</li>`).join("");
+  if (!COMPANY.address) hide("address-item");
+  if (!COMPANY.bizNumber) hide("biz-item");
 
   const tel = "tel:" + COMPANY.phone.replace(/[^0-9+]/g, "");
   $("phone-link").href = tel;
@@ -32,57 +26,52 @@
   }
 
   // 실적 숫자
-  $("stats").innerHTML = STATS.map(
-    (s) => `<div class="stat"><strong>${esc(s.value)}</strong><span>${esc(s.label)}</span></div>`
-  ).join("");
+  if (STATS.length) {
+    $("stats").innerHTML = STATS.map(
+      (s) => `<div class="stat"><strong>${esc(s.value)}</strong><span>${esc(s.label)}</span></div>`
+    ).join("");
+  } else hide("stats-section");
 
-  // 포트폴리오 + 필터
-  let current = "전체";
-  function renderProjects() {
-    const list = PROJECTS.filter((p) => current === "전체" || p.category === current);
-    $("projects").innerHTML = list.length
-      ? list
-          .map(
-            (p, i) => `
-        <article class="project">
-          <div class="thumb" style='background:${bg(p.image, i)}'>
-            ${p.image ? "" : '<span class="ph">사진 준비 중</span>'}
-            <span class="chip">${esc(p.category)}</span>
-          </div>
-          <div class="body">
-            <h3>${esc(p.title)}</h3>
-            <p class="meta">${esc(p.location)} · ${esc(p.year)} · ${esc(p.area)}</p>
-            <p>${esc(p.desc)}</p>
-          </div>
-        </article>`
-          )
-          .join("")
-      : '<p class="empty">해당 분야 사례를 준비 중입니다.</p>';
-  }
-  $("filters").innerHTML = CATEGORIES.map(
-    (c) => `<button type="button" class="filter${c === current ? " active" : ""}" data-cat="${esc(c)}">${esc(c)}</button>`
-  ).join("");
-  $("filters").addEventListener("click", (e) => {
-    const btn = e.target.closest(".filter");
-    if (!btn) return;
-    current = btn.dataset.cat;
-    document.querySelectorAll(".filter").forEach((b) => b.classList.toggle("active", b === btn));
-    renderProjects();
+  // 시공 사례: 프로젝트마다 개요 + 시공 전·후 비교 슬라이더
+  $("projects").innerHTML = PROJECTS.map((p) => {
+    const meta = [p.client, p.location, p.date, p.work].filter(Boolean);
+    return `
+      <article class="case">
+        <div class="case-head">
+          <h3>${esc(p.title)}</h3>
+          <ul class="case-meta">${meta.map((m) => `<li>${esc(m)}</li>`).join("")}</ul>
+          <p>${esc(p.desc)}</p>
+        </div>
+        <div class="pairs">
+          ${p.pairs
+            .map(
+              (x) => `
+            <figure class="pair">
+              <div class="ba">
+                <img class="ba-after" src="${esc(x.after)}" alt="${esc(x.caption)} 작업 후" loading="lazy" />
+                <img class="ba-before" src="${esc(x.before)}" alt="${esc(x.caption)} 작업 전" loading="lazy" />
+                <span class="ba-tag left">작업 전</span><span class="ba-tag right">작업 후</span>
+                <div class="ba-handle"></div>
+                <input type="range" min="0" max="100" value="50" aria-label="${esc(x.caption)} 작업 전후 비교" />
+              </div>
+              <figcaption>${esc(x.caption)}</figcaption>
+            </figure>`
+            )
+            .join("")}
+        </div>
+      </article>`;
+  }).join("");
+
+  document.querySelectorAll(".ba").forEach((ba) => {
+    const before = ba.querySelector(".ba-before");
+    const handle = ba.querySelector(".ba-handle");
+    const set = (v) => {
+      before.style.clipPath = `inset(0 ${100 - v}% 0 0)`;
+      handle.style.left = v + "%";
+    };
+    ba.querySelector("input").addEventListener("input", (e) => set(e.target.value));
+    set(50);
   });
-  renderProjects();
-
-  // 시공 전·후 비교
-  $("ba-title").textContent = BEFORE_AFTER.title;
-  $("ba-before").style.background = BEFORE_AFTER.before
-    ? bg(BEFORE_AFTER.before)
-    : "linear-gradient(135deg,#8a7a63,#c9b99a)";
-  $("ba-after").style.background = bg(BEFORE_AFTER.after, 0);
-  const setBA = (v) => {
-    $("ba-before").style.clipPath = `inset(0 ${100 - v}% 0 0)`;
-    $("ba-handle").style.left = v + "%";
-  };
-  $("ba-range").addEventListener("input", (e) => setBA(e.target.value));
-  setBA(50);
 
   // 서비스, 진행과정, 후기
   $("services-list").innerHTML = SERVICES.map(
@@ -91,13 +80,14 @@
   $("process-list").innerHTML = PROCESS.map(
     (p) => `<li><strong>${esc(p.step)}</strong><p>${esc(p.desc)}</p></li>`
   ).join("");
-  $("reviews").innerHTML = REVIEWS.map(
-    (r) => `<blockquote class="review"><p>“${esc(r.text)}”</p><cite>${esc(r.who)}</cite></blockquote>`
-  ).join("");
+  if (REVIEWS.length) {
+    $("reviews").innerHTML = REVIEWS.map(
+      (r) => `<blockquote class="review"><p>“${esc(r.text)}”</p><cite>${esc(r.who)}</cite></blockquote>`
+    ).join("");
+  } else hide("reviews-section");
 
   // 상담 신청 폼 → 메일 앱으로 전달
-  $("type-select").innerHTML = CATEGORIES.slice(1)
-    .concat(["유지관리", "기타"])
+  $("type-select").innerHTML = ["호텔·상업시설", "아파트·단지", "공공시설", "주택정원", "정기 관리", "기타"]
     .map((c) => `<option>${esc(c)}</option>`)
     .join("");
   $("inquiry").addEventListener("submit", (e) => {
@@ -107,7 +97,7 @@
     const body = [
       `성함/업체명: ${f.get("name")}`,
       `연락처: ${f.get("phone")}`,
-      `공사 유형: ${f.get("type")}`,
+      `현장 유형: ${f.get("type")}`,
       `현장 위치: ${f.get("location")}`,
       `면적/예산: ${f.get("budget")}`,
       "",

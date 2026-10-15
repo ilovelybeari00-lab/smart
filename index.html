@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>조경 설계·시공 포트폴리오</title>
-  <meta name="description" content="조경 설계, 시공, 유지관리 전문. 시공 사례와 무료 현장 상담 안내." />
-  <meta property="og:title" content="조경 설계·시공 포트폴리오" />
+  <title>스마트조경</title>
+  <meta name="description" content="스마트조경 - 수목 전정, 화단 정비 전문. 작업 전·후 사례와 현장 상담 안내." />
+  <meta property="og:title" content="스마트조경" />
   <meta property="og:description" content="시공 사례를 확인하고 무료 현장 상담을 신청하세요." />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/hero.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
@@ -29,7 +30,7 @@
   <main id="top">
     <section class="hero">
       <div class="wrap">
-        <p class="eyebrow">조경 설계 · 시공 · 유지관리</p>
+        <p class="eyebrow">수목 전정 · 화단 정비 · 조경 관리</p>
         <h1 data-bind="slogan"></h1>
         <p class="lead" data-bind="intro"></p>
         <div class="hero-cta">
@@ -40,36 +41,23 @@
       </div>
     </section>
 
-    <section class="stats">
+    <section class="stats" id="stats-section">
       <div class="wrap stats-grid" id="stats"></div>
     </section>
 
     <section id="portfolio" class="section">
       <div class="wrap">
         <h2>시공 사례</h2>
-        <p class="sub">직접 설계하고 시공한 현장입니다.</p>
-        <div class="filters" id="filters"></div>
-        <div class="grid" id="projects"></div>
+        <p class="sub">직접 작업한 현장입니다. 사진 위 슬라이더를 좌우로 밀어 작업 전과 후를 비교해 보세요.</p>
+        <div id="projects"></div>
       </div>
     </section>
 
-    <section class="section alt">
-      <div class="wrap">
-        <h2 id="ba-title"></h2>
-        <p class="sub">슬라이더를 좌우로 움직여 시공 전과 후를 비교해 보세요.</p>
-        <div class="ba" id="ba">
-          <div class="ba-img ba-after" id="ba-after"><span class="ba-tag">AFTER</span></div>
-          <div class="ba-img ba-before" id="ba-before"><span class="ba-tag">BEFORE</span></div>
-          <div class="ba-handle" id="ba-handle"></div>
-          <input type="range" min="0" max="100" value="50" id="ba-range" aria-label="시공 전후 비교" />
-        </div>
-      </div>
-    </section>
 
     <section id="services" class="section">
       <div class="wrap">
         <h2>서비스</h2>
-        <p class="sub">기획부터 관리까지 한 업체가 책임집니다.</p>
+        <p class="sub">건물의 첫인상을 바꾸는 조경 관리를 합니다.</p>
         <div class="cards" id="services-list"></div>
       </div>
     </section>
@@ -81,7 +69,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="reviews-section">
       <div class="wrap">
         <h2>고객 후기</h2>
         <div class="reviews" id="reviews"></div>
@@ -92,12 +80,12 @@
       <div class="wrap contact-grid">
         <div>
           <h2>무료 현장 상담·견적 문의</h2>
-          <p class="sub">남겨 주시면 1영업일 안에 연락드립니다.</p>
+          <p class="sub">현장 위치와 원하시는 작업을 남겨 주시면 연락드립니다.</p>
           <ul class="contact-info">
             <li>📞 <a id="phone-link"></a></li>
             <li>✉️ <a id="email-link"></a></li>
             <li id="kakao-item" hidden>💬 <a id="kakao-link" target="_blank" rel="noopener">카카오톡 상담</a></li>
-            <li>📍 <span data-bind="address"></span></li>
+            <li id="address-item">📍 <span data-bind="address"></span></li>
           </ul>
         </div>
         <form id="inquiry" class="form">
@@ -118,7 +106,7 @@
 
   <footer class="footer">
     <div class="wrap">
-      <strong data-bind="name"></strong> · 사업자등록번호 <span data-bind="bizNumber"></span> · <span data-bind="address"></span>
+      <strong data-bind="name"></strong><span id="biz-item"> · 사업자등록번호 <span data-bind="bizNumber"></span></span>
       <div class="copy">© <span id="year"></span> <span data-bind="name"></span>. All rights reserved.</div>
     </div>
   </footer>

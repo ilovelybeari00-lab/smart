@@ -1,113 +1,61 @@
 // =============================================================
 //  이 파일만 고치면 사이트 내용이 바뀝니다.
 //  사진은 images/ 폴더에 넣고 경로를 적어 주세요. (예: "images/apt-1.jpg")
-//  사진이 아직 없으면 image 를 "" 로 두면 임시 그림이 보입니다.
+//  비워 둔 항목("" 또는 [])은 사이트에 표시되지 않습니다.
 // =============================================================
 
 const COMPANY = {
-  name: "OO조경",
-  slogan: "공간의 가치를 높이는 조경",
+  name: "스마트조경",
+  slogan: "다듬을수록 가치가 드러나는 조경",
   intro:
-    "설계부터 시공, 사후 관리까지 한 번에. 아파트 단지, 상가, 공공시설, 개인 주택 정원까지 현장에 맞는 조경을 만듭니다.",
-  phone: "010-0000-0000",
-  email: "contact@example.com",
+    "호텔·상가·아파트의 수목 전정과 화단 정비를 전문으로 합니다. 하루 작업으로 건물의 첫인상이 달라집니다.",
+  phone: "010-0000-0000",        // ← 실제 번호로 바꿔 주세요
+  email: "contact@example.com",  // ← 실제 메일로 바꿔 주세요
   kakao: "", // 카카오톡 오픈채팅 주소가 있으면 입력 (예: "https://open.kakao.com/o/xxxx")
-  address: "OO시 OO구 OO로 00",
-  bizNumber: "000-00-00000",
-  licenses: ["조경공사업 등록", "조경기사 보유", "하자보증보험 가입"],
+  address: "",
+  bizNumber: "",
+  licenses: [], // 예: ["조경공사업 등록", "조경기사 보유"]
 };
 
-// 숫자로 보여주는 실적 (신뢰도를 높이는 핵심 영역)
-const STATS = [
-  { value: "120+", label: "누적 시공 현장" },
-  { value: "15년", label: "조경 업력" },
-  { value: "98%", label: "재계약·추천율" },
-  { value: "2년", label: "무상 하자보수" },
-];
+// 숫자로 보여주는 실적. 사실인 숫자만 적어 주세요. (비워 두면 숨겨집니다)
+// 예: { value: "120+", label: "누적 시공 현장" }
+const STATS = [];
 
 const SERVICES = [
-  { icon: "🌳", title: "조경 설계", desc: "현장 조사와 3D 시안으로 완공 모습을 미리 확인하고 결정할 수 있습니다." },
-  { icon: "🏗️", title: "조경 시공", desc: "수목 식재, 잔디, 포장, 데크, 퍼걸러, 수경시설까지 직접 시공합니다." },
-  { icon: "🏢", title: "옥상·실내 정원", desc: "방수·하중을 고려한 옥상정원과 건물 실내 녹화 공간을 만듭니다." },
-  { icon: "✂️", title: "유지 관리", desc: "전정, 시비, 병해충 방제, 관수 등 정기 관리 계약으로 상태를 유지합니다." },
+  { icon: "🌲", title: "수목 전정·수형 관리", desc: "소나무, 향나무 등 조경수의 수형을 살려 단정하고 품격 있게 다듬습니다." },
+  { icon: "🌿", title: "관목·생울타리 정리", desc: "웃자란 관목과 생울타리를 정리해 건물 입구와 간판이 잘 보이게 합니다." },
+  { icon: "🌸", title: "화단 정비", desc: "잡초와 고사목을 정리하고 화단 경계를 깔끔하게 정돈합니다." },
+  { icon: "🚛", title: "고소작업 장비 보유", desc: "높은 수목도 고소작업차로 안전하게 작업합니다." },
 ];
 
-// 포트폴리오. category 는 아래 CATEGORIES 중 하나로 적어 주세요.
-const CATEGORIES = ["전체", "아파트·단지", "상업시설", "공공시설", "주택정원", "옥상정원"];
-
+// 시공 사례. pairs 에 시공 전·후 사진을 짝지어 넣습니다.
 const PROJECTS = [
   {
-    title: "OO아파트 단지 중앙광장 리뉴얼",
-    category: "아파트·단지",
-    location: "경기 OO시",
-    year: "2025",
-    area: "3,200㎡",
-    desc: "노후 화단을 걷어내고 산책로, 그늘 쉼터, 계절 초화원을 조성했습니다.",
-    image: "",
-  },
-  {
-    title: "OO카페 진입 정원",
-    category: "상업시설",
-    location: "강원 OO군",
-    year: "2025",
-    area: "450㎡",
-    desc: "방문객 포토존이 되도록 자연석 동선과 야간 경관조명을 함께 설계했습니다.",
-    image: "",
-  },
-  {
-    title: "OO근린공원 어린이 숲놀이터",
-    category: "공공시설",
-    location: "충북 OO시",
-    year: "2024",
-    area: "1,800㎡",
-    desc: "자연 지형을 살린 숲놀이터와 그늘목 식재로 여름철 이용률을 높였습니다.",
-    image: "",
-  },
-  {
-    title: "단독주택 잔디 마당과 텃밭",
-    category: "주택정원",
-    location: "경기 OO시",
-    year: "2024",
-    area: "220㎡",
-    desc: "관리가 쉬운 잔디와 판석 동선, 높임 텃밭, 자동 관수 시스템을 시공했습니다.",
-    image: "",
-  },
-  {
-    title: "OO빌딩 옥상 휴게 정원",
-    category: "옥상정원",
-    location: "서울 OO구",
-    year: "2023",
-    area: "600㎡",
-    desc: "경량 토양과 방근 시트로 하중 문제를 해결하고 직원 휴게 공간을 만들었습니다.",
-    image: "",
-  },
-  {
-    title: "OO호텔 정원 연못 수경시설",
-    category: "상업시설",
-    location: "제주 OO시",
-    year: "2023",
-    area: "900㎡",
-    desc: "순환 펌프식 연못과 수생식물 식재로 사계절 관리가 쉬운 수경 공간을 만들었습니다.",
-    image: "",
+    title: "ILLUA호텔 조경작업",
+    client: "호텔 일루아 (HOTEL UNDER THE MOON ILLUA)",
+    location: "",           // 예: "부산 해운대구"
+    date: "2017년 7월",
+    work: "수목 전정 · 관목 정리 · 화단 정비",
+    desc:
+      "호텔 진입로, 정문, 주차장, 담장 주변 조경수를 정비했습니다. 웃자란 소나무와 관목의 수형을 다듬어 호텔 간판과 입구가 한눈에 들어오도록 했습니다.",
+    pairs: [
+      { caption: "주차장 입구 소나무 전정", before: "images/illua-1-before.jpg", after: "images/illua-1-after.jpg" },
+      { caption: "호텔 정문 관목 화단 정리", before: "images/illua-2-before.jpg", after: "images/illua-2-after.jpg" },
+      { caption: "진입로 간판 화단 정비", before: "images/illua-3-before.jpg", after: "images/illua-3-after.jpg" },
+      { caption: "석등 정원 수형 다듬기", before: "images/illua-4-before.jpg", after: "images/illua-4-after.jpg" },
+      { caption: "도로변 경사 화단 전정", before: "images/illua-5-before.jpg", after: "images/illua-5-after.jpg" },
+      { caption: "담장 소나무 전정", before: "images/illua-6-before.jpg", after: "images/illua-6-after.jpg" },
+    ],
   },
 ];
-
-// 시공 전·후 비교 (가장 강력한 홍보 자료입니다)
-const BEFORE_AFTER = {
-  title: "OO아파트 화단, 이렇게 바뀌었습니다",
-  before: "", // 예: "images/before.jpg"
-  after: "",  // 예: "images/after.jpg"
-};
 
 const PROCESS = [
-  { step: "상담·현장 방문", desc: "무료로 현장을 보고 예산과 원하시는 분위기를 듣습니다." },
-  { step: "설계·견적", desc: "도면과 3D 시안, 항목별 상세 견적서를 드립니다." },
-  { step: "계약·시공", desc: "공정표대로 진행하며 진행 사진을 매일 공유합니다." },
-  { step: "준공·관리", desc: "준공 검사 후 하자보수와 정기 관리를 이어갑니다." },
+  { step: "상담·현장 방문", desc: "현장을 보고 원하시는 방향과 일정을 듣습니다." },
+  { step: "견적", desc: "작업 범위와 항목별 비용을 정리해 드립니다." },
+  { step: "작업", desc: "필요한 장비와 인력으로 약속한 일정에 작업합니다." },
+  { step: "작업 보고서", desc: "작업 전·후 사진을 담은 보고서를 드립니다." },
 ];
 
-const REVIEWS = [
-  { text: "입주민 만족도가 크게 올라 관리비 민원이 줄었습니다. 공정 공유가 특히 좋았습니다.", who: "OO아파트 관리소장" },
-  { text: "카페 앞 정원이 SNS에서 화제가 되어 손님이 늘었어요. 야간 조명이 신의 한 수였습니다.", who: "OO카페 대표" },
-  { text: "견적이 항목별로 투명해서 비교하기 쉬웠고, 하자 처리도 빨랐습니다.", who: "OO시 공원녹지과 담당자" },
-];
+// 고객 후기. 실제로 받은 후기만 적어 주세요. (비워 두면 숨겨집니다)
+// 예: { text: "입구가 훨씬 깔끔해졌습니다.", who: "OO호텔 시설팀" }
+const REVIEWS = [];
