@@ -39,12 +39,12 @@ const PROJECTS = [
     desc:
       "호텔 진입로, 정문, 주차장, 담장 주변 조경수를 정비했습니다. 웃자란 소나무와 관목의 수형을 다듬어 호텔 간판과 입구가 한눈에 들어오도록 했습니다.",
     pairs: [
-      { caption: "주차장 입구 소나무 전정", before: "images/illua-1-before.jpg", after: "images/illua-1-after.jpg" },
-      { caption: "호텔 정문 관목 화단 정리", before: "images/illua-2-before.jpg", after: "images/illua-2-after.jpg" },
-      { caption: "진입로 간판 화단 정비", before: "images/illua-3-before.jpg", after: "images/illua-3-after.jpg" },
-      { caption: "석등 정원 수형 다듬기", before: "images/illua-4-before.jpg", after: "images/illua-4-after.jpg" },
-      { caption: "도로변 경사 화단 전정", before: "images/illua-5-before.jpg", after: "images/illua-5-after.jpg" },
-      { caption: "담장 소나무 전정", before: "images/illua-6-before.jpg", after: "images/illua-6-after.jpg" },
+      { caption: "진입로 간판 화단 정비", before: "images/illua-1-before.jpg", after: "images/illua-1-after.jpg" },
+      { caption: "석등 정원 수형 다듬기", before: "images/illua-2-before.jpg", after: "images/illua-2-after.jpg" },
+      { caption: "도로변 경사 화단 전정", before: "images/illua-3-before.jpg", after: "images/illua-3-after.jpg" },
+      { caption: "담장 소나무 전정", before: "images/illua-4-before.jpg", after: "images/illua-4-after.jpg" },
+      { caption: "호텔 정문 관목 화단 정리", before: "images/illua-5-before.jpg", after: "images/illua-5-after.jpg" },
+      { caption: "주차장 입구 소나무 전정", before: "images/illua-6-before.jpg", after: "images/illua-6-after.jpg" },
     ],
   },
 ];

@@ -45,16 +45,19 @@
         <div class="pairs">
           ${p.pairs
             .map(
-              (x) => `
+              (x, i) => `
             <figure class="pair">
-              <div class="ba">
-                <img class="ba-after" src="${esc(x.after)}" alt="${esc(x.caption)} 작업 후" loading="lazy" />
-                <img class="ba-before" src="${esc(x.before)}" alt="${esc(x.caption)} 작업 전" loading="lazy" />
-                <span class="ba-tag left">작업 전</span><span class="ba-tag right">작업 후</span>
-                <div class="ba-handle"></div>
-                <input type="range" min="0" max="100" value="50" aria-label="${esc(x.caption)} 작업 전후 비교" />
+              <figcaption><span class="num">${String(i + 1).padStart(2, "0")}</span>${esc(x.caption)}</figcaption>
+              <div class="pair-imgs">
+                <button type="button" class="shot" data-full="${esc(x.before)}" data-label="${esc(x.caption)} · 작업 전">
+                  <img src="${esc(x.before)}" alt="${esc(x.caption)} 작업 전" loading="lazy" />
+                  <span class="tag before">작업 전</span>
+                </button>
+                <button type="button" class="shot" data-full="${esc(x.after)}" data-label="${esc(x.caption)} · 작업 후">
+                  <img src="${esc(x.after)}" alt="${esc(x.caption)} 작업 후" loading="lazy" />
+                  <span class="tag after">작업 후</span>
+                </button>
               </div>
-              <figcaption>${esc(x.caption)}</figcaption>
             </figure>`
             )
             .join("")}
@@ -62,15 +65,20 @@
       </article>`;
   }).join("");
 
-  document.querySelectorAll(".ba").forEach((ba) => {
-    const before = ba.querySelector(".ba-before");
-    const handle = ba.querySelector(".ba-handle");
-    const set = (v) => {
-      before.style.clipPath = `inset(0 ${100 - v}% 0 0)`;
-      handle.style.left = v + "%";
-    };
-    ba.querySelector("input").addEventListener("input", (e) => set(e.target.value));
-    set(50);
+  // 사진을 누르면 크게 보기
+  const box = $("lightbox");
+  document.addEventListener("click", (e) => {
+    const shot = e.target.closest(".shot");
+    if (shot) {
+      $("lightbox-img").src = shot.dataset.full;
+      $("lightbox-cap").textContent = shot.dataset.label;
+      box.hidden = false;
+    } else if (!box.hidden && e.target.closest("#lightbox")) {
+      box.hidden = true;
+    }
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") box.hidden = true;
   });
 
   // 서비스, 진행과정, 후기
