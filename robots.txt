@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ilovelybeari00-lab.github.io/smart/sitemap.xml

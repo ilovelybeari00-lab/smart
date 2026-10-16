@@ -16,13 +16,18 @@
 
 ## 내용 바꾸는 법
 
-**`assets/data.js` 파일 하나만 수정하면 됩니다.**
+**`assets/data.js` 파일을 고친 뒤 `node build.mjs`를 한 번 실행합니다.**
+(검색 로봇이 내용을 읽을 수 있도록 `index.html`, `works.html`, `cases/*.html`, `sitemap.xml`을 미리 만들어 두는 과정입니다.
+템플릿은 `templates/`, 화면 조각은 `assets/render.js`에 있습니다. 만들어진 파일은 직접 고치지 말고 data.js와 템플릿을 고쳐 주세요.)
 
 - `COMPANY`: 회사명, 전화번호, 이메일, 주소, 카카오톡 상담 주소
 - `STATS`: 실적 숫자
 - `PROJECTS`: 시공 사례 (제목, 분야 `category`, 설명, 작업 전·후 사진 `pairs`, 작업 과정 사진 `progress`, 영상 `video`)
 - `BEFORE_AFTER`: 시공 전·후 사진
 - `REVIEWS`: 고객 후기
+- `FAQ`: 자주 묻는 질문 (검색 노출에 도움이 됩니다)
+- `region`, `serviceArea`, `siteUrl`, `seoTitle`, `seoDescription`, `keywords`: 검색 노출 설정
+- `naverVerify`, `googleVerify`: 네이버 서치어드바이저·구글 서치콘솔 소유확인 값
 
 ### 사진 넣기
 
@@ -49,6 +54,16 @@
 1. GitHub 저장소 → **Settings → Pages**
 2. Source를 `Deploy from a branch`, 브랜치는 `main` / `/ (root)` 선택
 3. 몇 분 뒤 `https://<아이디>.github.io/smart/` 주소로 접속됩니다.
+
+## 네이버·구글 검색에 등록하기 (공개한 뒤)
+
+1. **네이버 서치어드바이저** (searchadvisor.naver.com) → 웹마스터 도구 → 사이트 등록에 위 주소 입력
+   → "HTML 태그" 방식의 `content` 값을 `data.js`의 `naverVerify`에 넣고 `node build.mjs` → 올린 뒤 소유확인
+   → 요청 → 사이트맵 제출에 `sitemap.xml` 주소 입력, RSS 없이 진행
+2. **구글 서치콘솔** (search.google.com/search-console) → URL 접두어로 등록
+   → "HTML 태그"의 `content` 값을 `googleVerify`에 넣고 같은 방법으로 확인 → Sitemaps에 `sitemap.xml` 제출
+3. **네이버 스마트플레이스**(지도)에 업체 등록 후 홈페이지 주소를 넣으면 지역 검색("부산 조경업체")에 함께 뜹니다.
+4. 등록 후 1~2주 지나 네이버에서 `site:` 주소로 검색해 수집됐는지 확인합니다.
 
 공개한 뒤에는 이렇게 알리면 좋습니다.
 네이버 스마트플레이스와 블로그, 명함 QR코드, 견적서 하단, 관리사무소·건설사에 보내는 제안 메일에 이 주소를 넣으세요.
