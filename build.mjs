@@ -73,7 +73,7 @@ const common = (base) => ({
   serviceArea: esc(C.serviceArea),
   tel,
   bizItem: C.bizNumber ? ` · 사업자등록번호 ${esc(C.bizNumber)}` : "",
-  footerArea: esc(`${C.region} 조경업체 · 수목 전정 · 가지치기 · 화단 조성 · 묘지·산소 관리 · 작업 지역: ${C.serviceArea}`),
+  footerArea: esc(`${C.region} 조경업체 · 수목 전정 · 가지치기 · 화단 조성 · 작업 지역: ${C.serviceArea}`),
 });
 
 // ---------- index.html ----------
@@ -99,7 +99,7 @@ const common = (base) => ({
     email: esc(C.email),
     kakaoItem: C.kakao ? `<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-4.6A8 8 0 1 1 21 12Z"/></svg><a href="${esc(C.kakao)}" target="_blank" rel="noopener">카카오톡 상담</a></li>` : "",
     addressItem: C.address ? `<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>${esc(C.address)}</span></li>` : "",
-    typeOptions: ["호텔·상업시설", "아파트·단지", "학교·공공시설", "주택정원", "묘지·산소 관리", "정기 관리", "기타"].map((c) => `<option>${esc(c)}</option>`).join(""),
+    typeOptions: ["호텔·상업시설", "아파트·단지", "학교·공공시설", "주택정원", "정기 관리", "기타"].map((c) => `<option>${esc(c)}</option>`).join(""),
   };
   write("index.html", fill(read("templates/index.html"), vars));
 }
