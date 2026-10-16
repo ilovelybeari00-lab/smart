@@ -19,7 +19,7 @@ const COMPANY = {
     "부산 조경업체 스마트조경. 학교·공공기관·호텔·아파트 수목 전정, 소나무 가지치기, 생울타리 정리, 화단 조성, 묘지·산소 벌초 대행. 현장별 작업 전·후 사진 공개, 무료 현장 상담.",
   keywords: ["부산 조경업체", "부산 수목 전정", "부산 가지치기 업체", "소나무 전정", "학교 조경 관리", "아파트 조경 관리", "화단 조성", "생울타리 정리", "고사목 제거", "부산 벌초 대행", "묘지 관리", "산소 관리"],
   naverVerify: "",  // 네이버 서치어드바이저 사이트 소유확인 meta content 값
-  googleVerify: "", // 구글 서치콘솔 HTML 태그 content 값
+  googleVerify: "AGllginOId7qhOpLPijOIEsUUgtx2TFJ1gdbrMT7Gw4", // 구글 서치콘솔 HTML 태그 content 값
   phone: "010-8521-8412",
   email: "speckangjg@naver.com",
   kakao: "", // 카카오톡 오픈채팅 주소가 있으면 입력 (예: "https://open.kakao.com/o/xxxx")
