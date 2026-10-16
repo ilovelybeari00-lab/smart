@@ -97,8 +97,8 @@ const common = (base) => ({
     reviewsSection: REVIEWS.length ? `<section class="section" id="reviews-section"><div class="wrap"><h2>고객 후기</h2><div class="reviews">${R.reviewsHTML(REVIEWS)}</div></div></section>` : "",
     phone: esc(C.phone),
     email: esc(C.email),
-    kakaoItem: C.kakao ? `<li>💬 <a href="${esc(C.kakao)}" target="_blank" rel="noopener">카카오톡 상담</a></li>` : "",
-    addressItem: C.address ? `<li>📍 ${esc(C.address)}</li>` : "",
+    kakaoItem: C.kakao ? `<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-4.6A8 8 0 1 1 21 12Z"/></svg><a href="${esc(C.kakao)}" target="_blank" rel="noopener">카카오톡 상담</a></li>` : "",
+    addressItem: C.address ? `<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>${esc(C.address)}</span></li>` : "",
     typeOptions: ["호텔·상업시설", "아파트·단지", "학교·공공시설", "주택정원", "묘지·산소 관리", "정기 관리", "기타"].map((c) => `<option>${esc(c)}</option>`).join(""),
   };
   write("index.html", fill(read("templates/index.html"), vars));

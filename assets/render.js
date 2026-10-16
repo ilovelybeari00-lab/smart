@@ -3,6 +3,16 @@
   const esc = (s) =>
     String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
+  // 서비스 아이콘: data.js의 이모지를 선 아이콘(SVG)으로 바꿉니다. 없는 이모지는 그대로 표시합니다.
+  const ICONS = {
+    "🌲": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 7 10h3l-4 6h5v4h2v-4h5l-4-6h3z"/></svg>',
+    "🌿": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4c-8 0-14 4-15 13 5 1 13-2 15-13Z"/><path d="M5 19c2-5 6-9 11-11"/></svg>',
+    "🌸": '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2.5"/><path d="M12 9.5V4M12 20v-5.5M9.5 12H4M20 12h-5.5M10.2 10.2 6.3 6.3M17.7 17.7l-3.9-3.9M13.8 10.2l3.9-3.9M6.3 17.7l3.9-3.9"/></svg>',
+    "🚜": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17h2M7 11V8h6l2 3M3 11h12v3"/><circle cx="7" cy="17" r="3"/><circle cx="17" cy="17" r="2"/><path d="M15 8l3-4h3v6"/></svg>',
+    "🌾": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V9"/><path d="M12 13c-3 0-5-2-5-5 3 0 5 2 5 5ZM12 13c3 0 5-2 5-5-3 0-5 2-5 5ZM12 17c-3 0-5-2-5-5 3 0 5 2 5 5ZM12 17c3 0 5-2 5-5-3 0-5 2-5 5ZM12 9c-2 0-3-1.5-3-4 2 0 3 1.5 3 4ZM12 9c2 0 3-1.5 3-4-2 0-3 1.5-3 4Z"/></svg>',
+  };
+  const iconHTML = (i) => ICONS[String(i || "").trim()] || esc(i);
+
   // base: 페이지 위치에 따른 경로 접두어 ("" 또는 "../")
   function make(base) {
     const u = (p) => base + p;
@@ -108,7 +118,7 @@
     const statsHTML = (STATS) =>
       STATS.map((s) => `<div class="stat"><strong>${esc(s.value)}</strong><span>${esc(s.label)}</span></div>`).join("");
     const servicesHTML = (SERVICES) =>
-      SERVICES.map((s) => `<div class="card"><div class="icon">${s.icon}</div><h3>${esc(s.title)}</h3><p>${esc(s.desc)}</p></div>`).join("");
+      SERVICES.map((s) => `<div class="card"><div class="icon">${iconHTML(s.icon)}</div><h3>${esc(s.title)}</h3><p>${esc(s.desc)}</p></div>`).join("");
     const processHTML = (PROCESS) => PROCESS.map((p) => `<li><strong>${esc(p.step)}</strong><p>${esc(p.desc)}</p></li>`).join("");
     const reviewsHTML = (REVIEWS) =>
       REVIEWS.map((r) => `<blockquote class="review"><p>“${esc(r.text)}”</p><cite>${esc(r.who)}</cite></blockquote>`).join("");
