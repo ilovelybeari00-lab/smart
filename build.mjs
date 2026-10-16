@@ -107,7 +107,7 @@ const common = (base) => ({
 // ---------- works.html ----------
 {
   const R = RENDER.make("");
-  const title = `${C.region} 조경 시공사례 ${PROJECTS.length}곳 | ${C.name}`;
+  const title = `${C.region} 조경 시공사례 | ${C.name}`;
   const description = `${C.region} 학교·공공기관·호텔·사옥·빌라 수목 전정과 화단 조성 시공사례. 현장별 작업 전·후 사진을 비교해 보세요.`;
   const ld = { "@context": "https://schema.org", "@type": "CollectionPage", name: title, url: site + "works.html", hasPart: PROJECTS.map((p) => ({ "@type": "WebPage", name: p.title, url: site + R.caseUrl(p) })) };
   const vars = {

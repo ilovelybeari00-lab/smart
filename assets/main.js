@@ -22,8 +22,8 @@
       if ($("case-count")) {
         $("case-count").textContent =
           cat === "전체"
-            ? `${COMPANY.region}에서 직접 작업한 현장 ${total}곳입니다. 현장을 누르면 작업 전·후 사진을 볼 수 있습니다.`
-            : `${cat} 현장 ${shown}곳입니다.`;
+            ? `${COMPANY.region}에서 직접 작업한 현장입니다. 현장을 누르면 작업 전·후 사진을 볼 수 있습니다.`
+            : `${cat} 현장입니다.`;
       }
     });
   }
