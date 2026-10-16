@@ -23,7 +23,7 @@ const COMPANY = {
   phone: "010-8521-8412",
   email: "speckangjg@naver.com",
   kakao: "", // 카카오톡 오픈채팅 주소가 있으면 입력 (예: "https://open.kakao.com/o/xxxx")
-  address: "부산광역시 해운대구 반송동",
+  address: "부산광역시 해운대구",
   bizNumber: "617-33-74782",
   licenses: [], // 예: ["조경공사업 등록", "조경기사 보유"]
 };
