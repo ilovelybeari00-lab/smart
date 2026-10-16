@@ -23,8 +23,8 @@ const COMPANY = {
   phone: "010-8521-8412",
   email: "speckangjg@naver.com",
   kakao: "", // 카카오톡 오픈채팅 주소가 있으면 입력 (예: "https://open.kakao.com/o/xxxx")
-  address: "",
-  bizNumber: "",
+  address: "부산광역시 해운대구 반송동",
+  bizNumber: "617-33-74782",
   licenses: [], // 예: ["조경공사업 등록", "조경기사 보유"]
 };
 
@@ -42,7 +42,7 @@ const SERVICES = [
 
 // 시공 사례. 맨 위 사례가 첫 화면의 대표 사례로 나옵니다.
 // id 는 상세 페이지 주소에 쓰입니다. (영문 소문자)
-// category 는 목록 페이지의 분야 필터에 쓰입니다. (학교 / 공공시설 / 호텔·상업시설 / 주택·빌라)
+// category 는 목록 페이지의 분야 필터에 쓰입니다. (학교 / 공공시설 / 호텔·상업시설 / 주택·빌라 / 묘지·산소)
 // video 를 넣으면 상세 페이지에 영상이 나옵니다. (예: { src: "video/xxx.mp4", poster: "images/xxx.jpg", caption: "..." })
 // cover 는 목록 카드 사진입니다. (비우면 첫 번째 작업 후 사진)
 // pairs 에 시공 전·후 사진을 짝지어 넣습니다.
@@ -62,6 +62,21 @@ const PROJECTS = [
       { caption: "자연석 연못과 분수", src: "images/pond-1.jpg" },
       { caption: "연못 둘레 수생식물 식재", src: "images/pond-2.jpg" },
       { caption: "마당 쪽에서 본 연못 정원", src: "images/pond-3.jpg" },
+    ],
+  },
+  {
+    id: "grave-site",
+    title: "가족 묘원 벌초·잔디 정리",
+    cover: "images/grave-3-after.jpg",
+    client: "개인 가족 묘원",
+    category: "묘지·산소",
+    work: "벌초 · 봉분 주변 잡초 제거 · 계단식 잔디 깎기 · 배수로 정리",
+    desc:
+      "산자락에 자리한 가족 묘원입니다. 여름 동안 무릎까지 자란 풀을 예초기로 걷어내고, 봉분 주변과 돌담 둘레의 잡초를 정리했습니다. 계단식으로 조성된 잔디 묘역은 단을 따라 고르게 깎고, 배수로에 쌓인 풀과 흙도 걷어내 물길이 막히지 않게 했습니다. 작업 전·후 사진은 의뢰하신 분께 그대로 보내 드렸습니다.",
+    pairs: [
+      { caption: "돌담 옆 경사면 벌초", before: "images/grave-1-before.jpg", after: "images/grave-1-after.jpg" },
+      { caption: "배수로 양쪽 경사면 풀 베기", before: "images/grave-2-before.jpg", after: "images/grave-2-after.jpg" },
+      { caption: "계단식 잔디 묘역 깎기", before: "images/grave-3-before.jpg", after: "images/grave-3-after.jpg" },
     ],
   },
   {
